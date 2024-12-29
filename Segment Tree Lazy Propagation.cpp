@@ -23,6 +23,30 @@ public:
         seg[ind] =  (seg[2*ind+1]+ seg[2*ind+2]);
         
     }
+    int query(int ind, int low,int high, int l, int r,int val, vector<int>&seg,vector<int>&lazy){
+        if(lazy[ind]!=0){
+            seg[ind] += lazy[ind] * (high-low+1);
+            
+            if(low!=high){
+                lazy[ind*2+ 1] +=lazy[ind];
+                lazy[ind*2+ 2] +=lazy[ind];
+            }
+            lazy[ind]=0;
+        }
+        
+        if(r<low || l>high)return 0;
+        
+        else if(l<= low && r>=high){
+            return seg[ind];
+        }
+        else{
+            int mid = low + (high-low)/2;
+            int left =query(2*ind+1 , low, mid, l,r,val, seg, lazy);
+            int right = query(2*ind+2 , mid+1,high, l,r,val, seg, lazy);
+            return  left+right;
+        }
+        
+    }
     
     
     void update (int ind, int low,int high, int l, int r,int val, vector<int>&seg,vector<int>&lazy){
