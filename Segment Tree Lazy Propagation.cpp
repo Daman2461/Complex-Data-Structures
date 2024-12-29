@@ -23,7 +23,7 @@ public:
         seg[ind] =  (seg[2*ind+1]+ seg[2*ind+2]);
         
     }
-    int query(int ind, int low,int high, int l, int r,int val, vector<int>&seg,vector<int>&lazy){
+    int query(int ind, int low,int high, int l, int r, vector<int>&seg,vector<int>&lazy){
         if(lazy[ind]!=0){
             seg[ind] += lazy[ind] * (high-low+1);
             
@@ -41,8 +41,8 @@ public:
         }
         else{
             int mid = low + (high-low)/2;
-            int left =query(2*ind+1 , low, mid, l,r,val, seg, lazy);
-            int right = query(2*ind+2 , mid+1,high, l,r,val, seg, lazy);
+            int left =query(2*ind+1 , low, mid, l,r, seg, lazy);
+            int right = query(2*ind+2 , mid+1,high, l,r, seg, lazy);
             return  left+right;
         }
         
@@ -112,23 +112,52 @@ void  solve(){
     cin>>q;
     
     while(q--){
-        
-        int l1,r1,val;
-        
-        cin>>l1>>r1>>val;
-        l1 --;
-        r1--;
+        int type;
         
         
-        obj1.update(0, 0, n1-1, l1, r1, val, seg, lazy);
+        cin>>type;
         
-        
-        for(int i=0;i<4*n1;i++){
-            cout<<seg[i]<<" ";
+        if(type==1){
+            int l1,r1,val;
+            
+            cin>>l1>>r1>>val;
+            l1 --;
+            r1--;
+            
+            
+            obj1.update(0, 0, n1-1, l1, r1, val, seg, lazy);
+            
+            
+            for(int i=0;i<4*n1;i++){
+                cout<<seg[i]<<" ";
+            }
+            cout<<endl;
+            for(int i=0;i<4*n1;i++){
+                cout<<lazy[i]<<" ";
+            }
+            cout<<endl;
         }
-        cout<<endl;
-        for(int i=0;i<4*n1;i++){
-            cout<<lazy[i]<<" ";
+        
+        else if(type==2) {
+            int l1,r1;
+            
+            cin>>l1>>r1;
+            l1 --;
+            r1--;
+            
+            
+             
+            
+            int result = obj1.query(0, 0, n1 - 1, l1, r1, seg, lazy);
+                cout << "Query Result: " << result << endl;
+            for(int i=0;i<4*n1;i++){
+                cout<<seg[i]<<" ";
+            }
+            cout<<endl;
+            for(int i=0;i<4*n1;i++){
+                cout<<lazy[i]<<" ";
+            }
+            cout<<endl;
         }
         
         
