@@ -6,6 +6,17 @@
 #define ll long long
 using namespace std;
 
+// 5 1 2 3 4 5
+// 15 6 9 3 3 4 5 1 2 0 0 0 0 0 0 0 0 0 0 0 
+// 2
+// 1 1 3 2
+// 21 12 9 3 3 4 5 1 2 0 0 0 0 0 0 0 0 0 0 0 
+// 0 0 0 2 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+// 2 1 3
+// Query Result: 12
+// 21 12 9 3 3 4 5 1 2 0 0 0 0 0 0 0 0 0 0 0 
+// 0 0 0 2 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+// Program ended with exit code: 0
 
 class SegT{
 public:
